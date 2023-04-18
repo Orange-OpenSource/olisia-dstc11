@@ -1,3 +1,12 @@
+# Software Name : olisia-dstc11
+# Version: 1.0.0
+# SPDX-FileCopyrightText: Copyright (c) 2023 Orange
+# SPDX-License-Identifier: MIT
+# This software is distributed under the MIT,
+# the text of which is available at https://opensource.org/licenses/MIT
+# or see the "LICENSE" file for more details.
+# Authors: Lucas Druart, Léo Jacqmin
+
 import re
 from .w2n import word_to_num
 
