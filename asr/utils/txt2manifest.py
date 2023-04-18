@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: MIT
 # This software is distributed under the MIT,
 # the text of which is available at https://opensource.org/licenses/MIT
-# or see the "license.txt" file for more details.
+# or see the "LICENSE" file for more details.
 # Authors: Lucas Druart, Léo Jacqmin
 
 import scipy.io.wavfile as wav
