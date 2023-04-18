@@ -1,0 +1,15 @@
+transformers==4.19.4
+datasets==2.2.2
+-f https://download.pytorch.org/whl/torch_stable.html 
+torch==1.11.0+cu113 # might need to change your cuda version
+-f https://download.pytorch.org/whl/torch_stable.html 
+torchaudio==0.11.0+cu113
+h5py==3.7.0
+scipy==1.7.3
+tqdm==4.62.3
+nemo-text-processing==0.1.6rc0
+-e git+https://github.com/NVIDIA/NeMo@49d16f96dc9ebf633ac7b853793de7dcc20a9ebf#egg=nemo_toolkit
+numpy==1.22.4
+jiwer==2.5.1
+whisper @ git+https://github.com/openai/whisper.git@62fe7f1009a534986ac1d32a4aef8c244d029c28
+
