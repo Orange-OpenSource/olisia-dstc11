@@ -79,4 +79,4 @@ By default the inference script will store all of the evaluation examples with t
 
 Copyright (c) 2023 Orange
 
-This code is released under the MIT license. See the `license.txt` file for more information.
+This code is released under the MIT license. See the `LICENSE` file for more information.
