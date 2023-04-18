@@ -99,7 +99,6 @@ def main():
             labels = tokenizer(targets, max_length=max_target_length, padding=padding, truncation=True)
 
         model_inputs["labels"] = labels["input_ids"]
-        #model_inputs["dialogue_ids"] = examples["dialogue_id"]
         return model_inputs
 
     test_dataset = turn_level_devset.map(
@@ -139,13 +138,6 @@ def main():
     samples = []
     for step, batch in enumerate(test_dataloader):
         with torch.no_grad():
-            #dialogue_ids = batch.pop("dialogue_ids")
-            #turn_ids = batch.pop("turn_ids")
-
-            #dialogue_ids = dialogue_ids.numpy()
-            #turn_ids = turn_ids.numpy()
-            #dialogue_ids = [int2dialogue_ids[i] for i in dialogue_ids]
-
             batch = batch.to(device)
             generated_tokens = model.generate(
                 batch["input_ids"],
@@ -167,7 +159,6 @@ def main():
             decoded_preds = [postprocess_state(pred) for pred in decoded_preds]
             decoded_labels = [postprocess_state(ref) for ref in decoded_labels]
 
-            #logger.info(f"\nSample pred: {decoded_preds[0]} \n Reference: {decoded_labels[0]}\n")
             samples.append(
                     {'context': tokenizer.decode(batch['input_ids'][0], skip_special_tokens=True),
                      'pred': decoded_preds[0],
@@ -176,18 +167,6 @@ def main():
 
             metrics.add_batch(decoded_preds, decoded_labels, tokenizer.decode(batch['input_ids'][0], skip_special_tokens=True))
             progress_bar.update(1)
-
-        #if args.output_dir is not None:
-        #    for i in range(len(batch)):
-        #        if decoded_preds[i] != decoded_labels[i]:
-        #            context = tokenizer.decode(batch['input_ids'][i], skip_special_tokens=True)
-        #            if dialogue_ids[i] not in wrong_predictions:
-        #                wrong_predictions[dialogue_ids[i]] = {}
-        #            wrong_predictions[dialogue_ids[i]][turn_ids[i]] = {
-        #                    'context': context,
-        #                    'prediction': decoded_preds[i],
-        #                    'label': decoded_labels[i],
-        #                    }
 
     result = metrics.compute()
     for spl in random.sample(samples, 10):

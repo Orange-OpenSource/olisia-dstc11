@@ -27,7 +27,6 @@ from torch.nn.parallel.distributed import DistributedDataParallel
 from tqdm.auto import tqdm
 
 import transformers
-#from accelerate import Accelerator
 from filelock import FileLock
 from huggingface_hub import Repository
 from transformers import (
@@ -74,7 +73,6 @@ def parse_args():
     parser.add_argument("--patience", type=int, default=0, help="Number of epochs to wait before early stop if no progress on the validation set.")
     parser.add_argument("--min_epoch", type=int, default=0, help="Minimum number of epochs")
     parser.add_argument("--seed", type=int, default=None, help="A seed for reproducible training.")
-    #parser.add_argument("--local_rank", type=int, default=None)
     args = parser.parse_args()
     return args
 
@@ -94,7 +92,6 @@ def main():
     logger.info(device)
 
     logger.setLevel(logging.INFO)
-    #datasets.utils.logging.set_verbosity_warning()
     transformers.utils.logging.set_verbosity_info()
 
     # If passed along, set the training seed now.
@@ -176,8 +173,6 @@ def main():
 
     int2dialogue_ids = {v: k for k, v in dialogue_ids2int.items()}
 
-    #eval_dataset = eval_dataset.select([i for i in range(500, 564)])
-
     # Log a few random samples from the training set:
     for index in random.sample(range(len(train_dataset)), 1):
         logger.info(f"Sample {index} of the training set: {turn_level_trainset[index]}.")
@@ -245,9 +240,6 @@ def main():
     logger.info(f"  Total optimization steps = {args.max_train_steps}")
     progress_bar = tqdm(range(args.max_train_steps))
     completed_steps = 0
-
-    torch.distributed.init_process_group(backend='nccl')  #nccl gloo
-    #torch.distributed.init_process_group(backend='YOUR BACKEND',  init_method='env://')
 
     early_stopping = EarlyStopping(patience=args.patience, min_epoch=args.min_epoch)
     wrong_predictions = {}
@@ -381,4 +373,3 @@ class EarlyStopping:
 
 if __name__ == "__main__":
     main()
-

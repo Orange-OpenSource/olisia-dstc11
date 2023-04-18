@@ -41,7 +41,6 @@ def write_results_file(results, output_file):
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     df = pd.DataFrame(results)
     with open(output_file, 'w') as md:
-        #df.fillna('', inplace=True)
         df.to_markdown(buf=md)
 
 if __name__ == "__main__":
