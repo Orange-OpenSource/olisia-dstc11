@@ -1,6 +1,6 @@
 # DSTC11
 
-A repository for our participation to the DSTC11 track 3 challenge "[Dialog Systems Technology Challenge](https://dstc11.dstc.community/)" associated with the paper ["OLISIA: a Cascade System for Spoken Dialogue State Tracking"]().
+A repository for our participation to the DSTC11 track 3 challenge "[Dialog Systems Technology Challenge](https://dstc11.dstc.community/)" associated with the paper ["OLISIA: a Cascade System for Spoken Dialogue State Tracking"](https://hal.science/hal-04072601).
 
 
 # Quick start
